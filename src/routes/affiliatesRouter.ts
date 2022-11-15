@@ -1,9 +1,13 @@
 import { Router } from "express";
 import multer from "multer";
-const local = multer({ dest: 'uploads/' });
+import dotenv from 'dotenv';
+import sendData from "../controllers/affiliatesController";
+dotenv.config()
+
+const local = multer({ dest: process.env.DATA_TEMP });
 
 const affiliatesRouter = Router();
 
-affiliatesRouter.post('/', local.single('file'));
+affiliatesRouter.post('/', local.single('file'), sendData);
 
 export default affiliatesRouter;
