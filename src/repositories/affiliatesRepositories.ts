@@ -1,11 +1,17 @@
 import pkg from "@prisma/client";
-import { createTransactionsData } from "../utils/affiliatesUtils";
+import { createTransactionsDataType } from "../services/affiliatesServices";
 
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
-export async function createTransactionsData(transactionsData: createTransactionsData[]) {
+async function createTransactionsData(transactionsData: createTransactionsDataType[]) {
   await prisma.transactions.createMany({
     data: transactionsData,
   });
 }
+
+const affiliatesRepositories = {
+  createTransactionsData
+}
+
+export default affiliatesRepositories;
