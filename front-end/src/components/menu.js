@@ -1,13 +1,23 @@
-import styled from "styled-components";
 import { useContext } from "react";
+import styled from "styled-components";
 import { AuthContext } from "../temp/context";
 
 export default function Menu() {
+  const { sellers } = useContext(AuthContext);
 
   return (
     <Menubar>
       <SellersContainer>
-        
+      <div className="barrRemain">
+        <h3>Sellers</h3>
+        </div>
+        {sellers.map((e, i) => {
+          return(
+            <div className="names" key={i}>
+              <p>{e.name}</p>
+            </div>
+          )
+        })}
       </SellersContainer>
     </Menubar>
   )
@@ -37,16 +47,17 @@ const Menubar = styled.div`
 
 const SellersContainer = styled.div`
   width: 80%;
-  height: 40%;
+  height: 80%;
   background-color: var(--theme);
   border-radius: 10px;
   margin-top: 20%;
-  .remains {
-    width: 80%;
+  .names {
+    width: 90%;
     margin-top: 2px;
-    background-color: var(--theme);;
+    background-color: var(--theme-black);;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
   }
   p {
     width: 100%;

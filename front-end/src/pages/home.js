@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,10 +8,20 @@ import { AuthContext } from "../temp/context";
 
 export default function Home() {  
   const navigate = useNavigate();
-  const { setPage, reload, setReload } = useContext(AuthContext);
+  const { setPage, reload, setReload, setSellers } = useContext(AuthContext);
+  const URL = "http://localhost:5000/";
+  const headers = { authorization: JSON.parse(localStorage.getItem("tokenUser")) }
 
   useEffect(() => {
     if (!localStorage.tokenUser) return navigate("/");
+    
+    const promise = axios.get(`${URL}sellers`, { headers });
+    promise.then(({ data }) => {
+      setSellers(data);
+    });
+    promise.catch((error) => {
+      alert(error.response.data);
+    });
 
   }, [reload]);
 
