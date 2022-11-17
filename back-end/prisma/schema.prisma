@@ -8,15 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Transactions {
-  id  Int @id @default(autoincrement())
-  type  Int
-  date  String
-  product String
-  price Int
-  name  String
-}
-
 model users {
   id Int @id @default(autoincrement())
   username String @unique
@@ -31,4 +22,21 @@ model sessions {
   deleted_at DateTime?
   userId Int
   users users @relation(fields: [userId], references: [id])
+}
+
+model transactions {
+  id  Int @id @default(autoincrement())
+  type  Int
+  date  String
+  product String
+  price Int
+  name  String
+  types types @relation(fields: [type], references: [id])
+}
+
+model types {
+  id  Int @id @default(autoincrement())
+  description String @unique
+  type String
+  Transactions transactions[]
 }

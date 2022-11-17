@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import fs from "fs";
 import dotenv from 'dotenv';
-import { saveData } from "../services/affiliatesServices.js";
+import services from "../services/affiliatesServices.js";
 dotenv.config()
 
 export default async function sendData(req: Request,res: Response) {
@@ -12,7 +12,7 @@ export default async function sendData(req: Request,res: Response) {
     const listFile = fs.readFileSync(localFile, 'utf8');
     const arrFiles = listFile.split(/\r?\n/);
 
-    saveData(arrFiles);
+    services.saveData(arrFiles);
 
     fs.unlinkSync(localFile);
     res.sendStatus(200);
@@ -22,4 +22,17 @@ export default async function sendData(req: Request,res: Response) {
     console.error(err);
     res.sendStatus(400);
   }
+}
+
+export async function searchSellers(req: Request, res: Response) {
+  const sellers = await services.searchSellers();
+
+  res.send(sellers);
+}
+
+export async function searchTransactions(req: Request, res: Response) {
+  const seller = req.query.seller;
+  const transactions = await services.searchTransactions(seller.toString());
+
+  res.send(transactions);
 }
