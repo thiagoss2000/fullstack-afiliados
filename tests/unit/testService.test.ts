@@ -22,7 +22,7 @@ function imputfaker() {
     const fObj = generateFakerData();
     const { type, date, product, price, name } = fObj;
     outData.push(fObj);
-    data.push(`${type.toString()}${date.padStart(25)}${product.padStart(30)}${price.toString()}${name.padStart(20)}`);
+    data.push(`${type.toString()}${date.padStart(25)}${product.padStart(30)}${price.toString().padStart(10)}${name.padStart(20)}`);
   }
   return { outData, data };
 }

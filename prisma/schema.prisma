@@ -16,3 +16,19 @@ model Transactions {
   price Int
   name  String
 }
+
+model users {
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  sessions sessions[]
+}
+
+model sessions {
+  id Int @id @default(autoincrement())
+  token String
+  created_at DateTime @default(now())
+  deleted_at DateTime?
+  userId Int
+  users users @relation(fields: [userId], references: [id])
+}
