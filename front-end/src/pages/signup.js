@@ -42,11 +42,11 @@ export function SignUp() {
       </header>
       <StyledForm onSubmit={signUpUser}>
         <input
-          name="user_name"
+          name="username"
           type="text"
           disabled={loading}
           placeholder="username"
-          value={user.user_name}
+          value={user.username}
           onChange={updateUser}
           required
         />

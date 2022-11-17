@@ -34,7 +34,8 @@ export function Login() {
     promise.then(({ data }) => {
       tokenObject = JSON.stringify(data.token);
       localStorage.setItem("tokenUser", tokenObject);
-      localStorage.setItem("username", data.user_name);
+      localStorage.setItem("username", data.username);
+
       setLoading(false);
       navigate("/home");
     });
@@ -52,11 +53,11 @@ export function Login() {
       </header>
       <StyledForm onSubmit={signInUser}>
         <input
-          name="user_name"
+          name="username"
           type="text"
           disabled={loading}
           placeholder="username"
-          value={user.user_name}
+          value={user.username}
           onChange={updateUser}
           required
         />

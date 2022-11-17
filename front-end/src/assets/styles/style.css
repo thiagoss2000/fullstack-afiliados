@@ -12,9 +12,9 @@
 
   -webkit-tap-highlight-color: transparent;
 
-  --theme: #444;
-  --theme-black: #333;
-  --theme-light: #888;
+  --theme: rgb(129, 129, 129);
+  --theme-black: rgb(110, 110, 110);
+  --theme-light: rgb(101, 101, 102);
   --theme-back: #fff;
   --error: #ff2828;
 }
