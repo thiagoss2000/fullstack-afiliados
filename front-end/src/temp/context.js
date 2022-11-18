@@ -4,14 +4,16 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
     const [reload, setReload] = useState(false);
-    const [page, setPage] = useState("search");
     const [sellers, setSellers] = useState([]);
-    
+    const [dataList, setDataList] = useState([]);
+    const [sellerSelected, setSellerSelected] = useState('');
+
     return (
         <AuthContext.Provider value={{
             reload, setReload,
-            page, setPage,
-            sellers, setSellers
+            sellers, setSellers,
+            dataList, setDataList,
+            sellerSelected, setSellerSelected
         }}>
             {props.children}
         </AuthContext.Provider>

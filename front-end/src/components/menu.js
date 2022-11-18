@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AuthContext } from "../temp/context";
 
 export default function Menu() {
-  const { sellers } = useContext(AuthContext);
+  const { sellers, setSellerSelected } = useContext(AuthContext);
 
   return (
     <Menubar>
@@ -13,7 +13,10 @@ export default function Menu() {
         </div>
         {sellers.map((e, i) => {
           return(
-            <div className="names" key={i}>
+            <div className="names"
+              key={i}
+              onClick={() => setSellerSelected(e.name)}
+            >
               <p>{e.name}</p>
             </div>
           )

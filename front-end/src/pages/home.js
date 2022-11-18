@@ -4,33 +4,42 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/header";
 import Menu from "../components/menu";
+import ViewMoviment from "../components/viewMoviment";
 import { AuthContext } from "../temp/context";
+import logout from "../utils/clearLocallhost";
 
 export default function Home() {  
   const navigate = useNavigate();
-  const { setPage, reload, setReload, setSellers } = useContext(AuthContext);
+  const { reload, setSellers, sellerSelected, setDataList } = useContext(AuthContext);
   const URL = "http://localhost:5000/";
   const headers = { authorization: JSON.parse(localStorage.getItem("tokenUser")) }
+  const params = { seller: sellerSelected };
 
   useEffect(() => {
     if (!localStorage.tokenUser) return navigate("/");
     
-    const promise = axios.get(`${URL}sellers`, { headers });
+    const promise = axios.get(`${URL}transactions`, { headers, params });
     promise.then(({ data }) => {
-      setSellers(data);
+      setSellers(data.sellers);
+      setDataList(data.transactions);
     });
     promise.catch((error) => {
-      alert(error.response.data);
+      if (error.response.status === 401) {
+        if (window.confirm("É necessario autenticar novamente...")) {
+          logout();
+          navigate("/");
+        }
+      } else {
+        alert(error.response.data);
+      }
     });
 
-  }, [reload]);
+  }, [reload, sellerSelected]);
 
   return (
     <DivHome>
       <Header />
-      <Contain>
-        
-      </Contain>
+      <ViewMoviment />
       <Menu />
     </DivHome>
   );
@@ -41,51 +50,4 @@ const DivHome = styled.div`
   height: 100vh;
   background-color: #333;
   position: relative;
-`
-const Contain = styled.div`
-  border-radius: 20px;
-  margin-left: 5%;
-  margin-top: 4%;
-  width: 70%;
-  height: 80%;
-  background-color: #555;
-  .barr {
-    margin: auto;
-    width: 98%;
-    height: 4%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .cont {
-    border-radius: 10px;
-    margin: auto;
-    width: 99%;
-    height: 95%;
-    background-color: #333;
-    overflow: auto;
-  }
-  .info {
-    width: 100%;
-    height: 25px;
-    background-color: #fff;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    cursor: pointer;
-  }
-  h3 {
-    width: 30%;
-    text-align: center;
-  }
-  p {
-    width: 30%;
-    max-height: 80%;
-    text-align: center;
-    white-space: nowrap;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 `

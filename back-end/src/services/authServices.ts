@@ -8,7 +8,7 @@ export async function signUp(userData: authRepository.userData){
   const { username, password } = userData;
 
   const user = await authRepository.searchUser(username);
-  if(user) throw {status: 409, message: "user exists"};
+  if(user) return {status: 409, message: "user exists"};
   
   const hashPassword = bcrypt.hashSync(password,10);
   await authRepository.createUser({ username, password: hashPassword })  
@@ -18,8 +18,8 @@ export async function signIn(userData: authRepository.userData){
 
   const verifyUser = await authRepository.searchUser(userData.username);
   
-  if(!verifyUser || !bcrypt.compareSync(userData.password, verifyUser.password))
-    throw {status: 401, message: "invalid data"};      
+  if (!verifyUser || !bcrypt.compareSync(userData.password, verifyUser.password))
+    return false;      
     
   const data = { id: verifyUser.id }
   const config = { expiresIn: "1h" };
@@ -32,5 +32,5 @@ export async function signIn(userData: authRepository.userData){
 
 export async function checkToken(token: string) {
   const dataToken = await authRepository.findToken(token);
-  if (dataToken.deleted_at) throw {status: 401, message: "expired token"};
+  if (dataToken.deleted_at) return dataToken;
 }

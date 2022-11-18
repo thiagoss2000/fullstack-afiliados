@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>6/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>6/21</span>
             </div>
         
             
@@ -87,7 +87,16 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -100,21 +109,30 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from "express";
 import fs from "fs";
 import dotenv from 'dotenv';
-import { saveData } from "../services/affiliatesServices.js";
+import services from "../services/affiliatesServices.js";
 dotenv.config()
 &nbsp;
 export default async function <span class="fstat-no" title="function not covered" >sendData(</span>req: Request,res: Response) {
@@ -124,17 +142,26 @@ export default async function <span class="fstat-no" title="function not covered
 <span class="cstat-no" title="statement not covered" >  try {</span>
     const listFile = <span class="cstat-no" title="statement not covered" >fs.readFileSync(localFile, 'utf8');</span>
     const arrFiles = <span class="cstat-no" title="statement not covered" >listFile.split(/\r?\n/);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    saveData(arrFiles);</span>
-&nbsp;
+    const error = <span class="cstat-no" title="statement not covered" >await services.saveData(arrFiles);</span>
 <span class="cstat-no" title="statement not covered" >    fs.unlinkSync(localFile);</span>
-<span class="cstat-no" title="statement not covered" >    res.sendStatus(200);</span>
+<span class="cstat-no" title="statement not covered" >    if (!error) {</span>
+<span class="cstat-no" title="statement not covered" >      res.sendStatus(200);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      res.status(error.status).send(error.message);</span>
+    }
 &nbsp;
   } catch(err) {
-    
 <span class="cstat-no" title="statement not covered" >    console.error(err);</span>
-<span class="cstat-no" title="statement not covered" >    res.sendStatus(400);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(401).send("type not acceptable!");</span>
   }
+}
+&nbsp;
+export async function <span class="fstat-no" title="function not covered" >searchTransactions(</span>req: Request, res: Response) {
+  const sellerSelected = <span class="cstat-no" title="statement not covered" >req.query.seller;</span>
+  const sellers = <span class="cstat-no" title="statement not covered" >await services.searchSellers();</span>
+  const transactions = <span class="cstat-no" title="statement not covered" >await services.searchTransactions(sellerSelected.toString());</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  res.send({ transactions, sellers });</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -142,7 +169,7 @@ export default async function <span class="fstat-no" title="function not covered
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-17T00:53:09.921Z
+                at 2022-11-18T18:27:50.935Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

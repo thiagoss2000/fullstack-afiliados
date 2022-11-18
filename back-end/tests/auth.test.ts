@@ -8,8 +8,8 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const userData = {
-    username: "test",
-    password: "test"
+    username: "test@test",
+    password: "test123456"
 }
 
 const header = {

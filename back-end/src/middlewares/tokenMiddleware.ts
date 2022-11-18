@@ -9,11 +9,16 @@ export async function validateToken (req: Request, res: Response, next: NextFunc
     const { authorization } = req.headers;
 
     if (!authorization) return res.status(401).send("Token not provided");
-    await checkToken(authorization);
+    const expiredToken = await checkToken(authorization);
+    if (expiredToken) return res.status(401).send("Expired token");
 
     const token = authorization.replace("Bearer ", "");
    
-    const validateToken = jwt.verify(token, process.env.ENCRYPTPASSWORD);
-    res.locals.user= validateToken
-    next();  
+    try {
+        const validateToken = jwt.verify(token, process.env.ENCRYPTPASSWORD);
+        res.locals.user = validateToken
+        next();
+    } catch (err) {
+        return res.status(401).send("Expired token");
+    };
 }

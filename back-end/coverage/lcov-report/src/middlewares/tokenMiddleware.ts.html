@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/services/authServices.ts</title>
+    <title>Code coverage report for src/middlewares/tokenMiddleware.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/services</a> authServices.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/middlewares</a> tokenMiddleware.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84% </span>
+                <span class="strong">29.41% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/25</span>
+                <span class='fraction'>5/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>5/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,34 +86,9 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -121,53 +96,42 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import bcrypt from "bcrypt";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import dotenv from "dotenv";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import * as authRepository from "../repositories/authRepository.js";
-import dotenv from "dotenv";
-dotenv.config();
+import { checkToken } from "../services/authServices.js";
 &nbsp;
-export async function signUp(userData: authRepository.userData){
-  const { username, password } = userData;
+dotenv.config({ path: ".env" });
 &nbsp;
-  const user = await authRepository.searchUser(username);
-  if(user) return {status: 409, message: "user exists"};
-  
-  const hashPassword = bcrypt.hashSync(password,10);
-  await authRepository.createUser({ username, password: hashPassword })  
-}
+export async function <span class="fstat-no" title="function not covered" >validateToken </span>(req: Request, res: Response, next: NextFunction){
+    const { authorization } = <span class="cstat-no" title="statement not covered" >req.headers;</span>
 &nbsp;
-export async function signIn(userData: authRepository.userData){
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!authorization) <span class="cstat-no" title="statement not covered" >return res.status(401).send("Token not provided");</span></span>
+    const expiredToken = <span class="cstat-no" title="statement not covered" >await checkToken(authorization);</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (expiredToken) <span class="cstat-no" title="statement not covered" >return res.status(401).send("Expired token");</span></span>
 &nbsp;
-  const verifyUser = await authRepository.searchUser(userData.username);
-  
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (!verifyUser || !bcrypt.compareSync(userData.password, verifyUser.password))
-<span class="cstat-no" title="statement not covered" >    return false;      </span>
-    
-  const data = { id: verifyUser.id }
-  const config = { expiresIn: "1h" };
-  const token = jwt.sign(data ,process.env.ENCRYPTPASSWORD, config);
-&nbsp;
-  await authRepository.insertToken(verifyUser.id, token);
-&nbsp;
-  return token;
-}
-&nbsp;
-export async function <span class="fstat-no" title="function not covered" >checkToken(</span>token: string) {
-  const dataToken = <span class="cstat-no" title="statement not covered" >await authRepository.findToken(token);</span>
-<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (dataToken.deleted_at) <span class="cstat-no" title="statement not covered" >return dataToken;</span></span>
+    const token = <span class="cstat-no" title="statement not covered" >authorization.replace("Bearer ", "");</span>
+   
+<span class="cstat-no" title="statement not covered" >    try {</span>
+        const validateToken = <span class="cstat-no" title="statement not covered" >jwt.verify(token, process.env.ENCRYPTPASSWORD);</span>
+<span class="cstat-no" title="statement not covered" >        res.locals.user = validateToken</span>
+<span class="cstat-no" title="statement not covered" >        next();</span>
+    } catch (err) {
+<span class="cstat-no" title="statement not covered" >        return res.status(401).send("Expired token");</span>
+    };
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

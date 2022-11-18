@@ -19,11 +19,12 @@ async function searchTransactions(seller: string) {
 }
 
 async function saveData(listData: string[]) {
-  const data = sanitizer(listData);
-
-  await affiliatesRepositories.createTransactionsData(data)
-
-  console.log(data);
+  try {
+    const data = sanitizer(listData);
+    await affiliatesRepositories.createTransactionsData(data);
+  } catch (e) {
+    return { status: 422, message: "incorrect datatype!" }
+  }
 }
 
 export type createTransactionsDataType = Omit<transactionsData, "id">;

@@ -41,7 +41,6 @@ export function Login() {
     });
     promise.catch((error) => {
       alert(error.response.data);
-      console.log(error.response.data)
       setLoading(false);
     });
   }

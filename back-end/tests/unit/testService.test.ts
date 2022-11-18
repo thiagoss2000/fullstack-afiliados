@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
 import affiliatesRepositories from "../../src/repositories/affiliatesRepositories";
-import { saveData } from "../../src/services/affiliatesServices";
+import affiliatesServices from "../../src/services/affiliatesServices";
 
 describe("service saveData", () => {
   it('insert...', () => {
     const fakerData = imputfaker();
     console.log(fakerData)
     jest.spyOn(affiliatesRepositories, "createTransactionsData").mockImplementationOnce((value):any => expect(value).toEqual(fakerData.outData));
-    saveData(fakerData.data);
+    affiliatesServices.saveData(fakerData.data);
 
   });
 
