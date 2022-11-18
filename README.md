@@ -1,3 +1,18 @@
+## This is a challenge by Coodesh
+
+## Projeto FullStack-Afiliados
+
+A aplicação consiste em dois sistemas individuais de frontend e backend
+que possibilitam o upload de um arquivo txt e a armazenagem dos dados em 
+um banco relacional, possibilitando o acesso aos dados em lista organizados
+pelo nome do fornecedor
+
+Linguagens e tecnologias utilizadas: 
+  Javascript, typescript, html, css, yml, json
+  NodeJs, React, Postgresql, jest, supertest, docker,
+  prisma, git, joi, jwt, bycrypt, axios, express, 
+  styled-compontents, multer
+
 ## Para iniciar a aplicação back-end
 **na pasta back-end execute**
 
