@@ -1,0 +1,24 @@
+services:
+  db_affiliates:
+    image: postgres
+    container_name: db_affiliates
+    restart: always
+    ports:
+      - 1235:5432
+    env_file:
+      - ./.env
+    volumes:
+      - db_affiliates:/var/lib/postgresql/data
+
+  affiliates:
+    container_name: affiliates
+    build: .
+    ports: 
+      - 5000:5000
+    depends_on:
+      - db_affiliates
+    env_file:
+      - ./.env
+    command: bash -c "npx prisma generate && npx prisma migrate dev && npm run start"
+volumes:
+  db_affiliates:

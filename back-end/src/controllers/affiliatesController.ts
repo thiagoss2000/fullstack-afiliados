@@ -6,7 +6,7 @@ dotenv.config()
 
 export default async function sendData(req: Request,res: Response) {
 
-  const localFile = `${process.env.DATA_TEMP}${req.file?.filename}`
+  const localFile = `uploads/${req.file?.filename}`
   
   try {
     const listFile = fs.readFileSync(localFile, 'utf8');
