@@ -1,5 +1,6 @@
 ## This is a challenge by [Coodesh](https://coodesh.com/)
 
+
 ## Projeto FullStack-Afiliados
 
 A aplicação consiste em dois sistemas individuais de frontend e backend
