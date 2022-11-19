@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id Int @id @default(autoincrement())
+  username String @unique
+  password String
+  sessions sessions[]
+}
+
+model sessions {
+  id Int @id @default(autoincrement())
+  token String
+  created_at DateTime @default(now())
+  deleted_at DateTime?
+  userId Int
+  users users @relation(fields: [userId], references: [id])
+}
+
+model transactions {
+  id  Int @id @default(autoincrement())
+  type  Int
+  date  String
+  product String
+  price Int
+  name  String
+  types types @relation(fields: [type], references: [id])
+}
+
+model types {
+  id  Int @id @default(autoincrement())
+  description String @unique
+  type String
+  Transactions transactions[]
+}
